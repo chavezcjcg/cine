@@ -28,10 +28,18 @@ def sala():
         else:
             print("Ingrese un numero valido")
             return 0
+    def cancelar_reserva(nombre):
+        for cliente in sala:
+            if cliente["nombre"].lower() == nombre.lower():
+                sala.remove(cliente)
+                print(f"La reserva de {nombre} ha sido cancelada.")
+                return
+        print("Cliente no encontrado, ingrese un nombre existente.")
+
 
     while True:
         print("\n--- Menu ---")
-        print("1. Ingresar cliente\n.2. Mostrar clientes registrados.\n3. Salir")
+        print("1. Ingresar cliente\n.2. Mostrar clientes registrados.\n3. Cancelar reserva.\n4. salir")
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1":
@@ -50,6 +58,9 @@ def sala():
             for cliente in sala:
                 print(cliente)
         elif opcion == "3":
+            nombre = input("Ingrese el nombre del cliente a cancelar la reserva: ")
+            cancelar_reserva(nombre)
+        elif opcion == "4":
             break
         else:
             print("Opción inválida.")
